@@ -15,6 +15,20 @@ public:
     explicit WelcomeVIew(QWidget *parent = nullptr);
     ~WelcomeVIew();
 
+private slots:
+    void on_btDepartment_clicked();
+
+    void on_btDoctor_clicked();
+
+    void on_btPatient_clicked();
+
+signals:
+    void goDepartmentView();
+
+    void goDoctorView();
+
+    void goPatientView();
+
 private:
     Ui::WelcomeVIew *ui;
 };
