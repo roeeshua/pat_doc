@@ -44,33 +44,34 @@ void MasterView::goWelcomView()
 
 void MasterView::goDoctorView()
 {
+    qDebug()<<"goDoctorview";
     doctorView = new DoctorView(this);
-
     pushWidgetToStackView(doctorView);
 }
 
 void MasterView::goDepartmentView()
 {
+    qDebug()<<"goDepartmentView";
     departmentView = new DepartmentView(this);
-
     pushWidgetToStackView(departmentView);
 }
 
-void MasterView::goPatientEditView()
+void MasterView::goPatientEditView(int rowNo)
 {
-    PatientEditView = new patientEditView(this);
-
+    qDebug()<<"goPatientEditview";
+    PatientEditView = new patientEditView(this,rowNo);
     pushWidgetToStackView(PatientEditView);
+
+    connect(PatientEditView, SIGNAL(goPreviousView()),this, SLOT(goPreviousView()));
 }
 
 void MasterView::goPatientView()
 {
+    qDebug()<<"goPaitentView";
     patientView = new PatientView(this);
-
     pushWidgetToStackView(patientView);
 
-    connect(patientView,SIGNAL(goPatientEditView()),this,SLOT(goPatientEditView()));
-
+    connect(patientView,SIGNAL(goPatientEditView(int)),this,SLOT(goPatientEditView(int)));
 }
 
 void MasterView::goPreviousView()
